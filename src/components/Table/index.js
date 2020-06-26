@@ -6,9 +6,7 @@ function Table(props) {
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col" onClick={props.handleSortChange}>
-            Name
-          </th>
+          <th scope="col"> Name</th>
           <th scope="col">Phone</th>
           <th scope="col">Email</th>
           <th scope="col">Location</th>

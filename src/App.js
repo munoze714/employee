@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as _ from "lodash";
 import API from "./utils/API";
 import Table from "../src/components/Table";
 import Jumbotron from "./components/Jumbotron";
@@ -7,7 +8,6 @@ function App() {
   const [state, setState] = useState({
     employees: [],
     filteredEmployees: [],
-    sortedEmployees: [],
   });
 
   useEffect(() => {
@@ -58,27 +58,26 @@ function App() {
   if (state.filteredEmployees.length > 0) {
     empsToDisplay = state.filteredEmployees;
   }
-  var handleSortChange = (event) => {
-    //   newSorted = [];
-    //   state.employees.forEach((empSort) => {
-    //     switch (ase) {
-    //       case value:
-    //         break;
-    //       default:
-    //         break;
-    //     }
-    //     empSort.sort((a, b) => a.date < b.date);
-    //   });
+  var handleSortChange = () => {
+    let sortedEmp = []
+    _.sortBy(empsToDisplay, "name").map(sortEmp => {
+      // console.log("sort", sortEmp);
+      sortedEmp.push(sortEmp)
+      return sortEmp
+
+    })
+
+    setState({ ...state, filteredEmployees: sortedEmp });
   };
 
   return (
     <>
       <div className="App">
-        <Jumbotron handleInputChange={handleInputChange} />
-        <Table
-          empsToDisplay={empsToDisplay}
+        <Jumbotron
+          handleInputChange={handleInputChange}
           handleSortChange={handleSortChange}
         />
+        <Table empsToDisplay={empsToDisplay} />
       </div>
     </>
   );
