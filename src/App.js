@@ -58,6 +58,7 @@ function App() {
   if (state.filteredEmployees.length > 0) {
     empsToDisplay = state.filteredEmployees;
   }
+
   var handleSortChange = () => {
     let sortedEmp = []
     _.sortBy(empsToDisplay, "name").map(sortEmp => {
